@@ -1,8 +1,7 @@
 # Node Modules
 node_modules
 
-package.json
-package-json.lock
+package-lock.json
 
 # IDE files
 .idea
