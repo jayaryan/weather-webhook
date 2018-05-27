@@ -16,12 +16,17 @@ app.post('/webhook', function (req, res) {
 
     res.set('Content-Type', 'application/json');
     console.log("Post request from DialogFlow");
-    console.log(req.body);
+//    console.log(req.body);
     console.log("Request Geo city is - ", req.body.queryResult.parameters['geo-city']);
 
     let city = req.body.queryResult.parameters['geo-city'];
-    let weather = getWeather(city);
-    let response = '';
+
+    let weather = 'You are requesting for an invalid city';
+    
+    if(city)       
+        weather = getWeather(city);
+
+    let response = 'Got you request for '+city;
     let responseObject = {
         "fulfillmentText": response,
         "fulfillmentMessage": [{"text": {"text": [weather]}}],
@@ -47,7 +52,10 @@ app.get('/weather/:city', function (req, res) {
     console.log("Request Geo city is - ", req.params.city);
 
     let city = req.params.city;
-    let weather = getWeather(city);
+
+    let weather = 'You are requesting for an invalid City';	
+    if(city)
+       weather = getWeather(city);
     let response = '';
     let responseObject = {
         "fulfillmentText": response,
@@ -85,11 +93,11 @@ function callback(err, response, body) {
 function getWeather(city) {
     result = undefined;
     let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + apiKey;
-    console.log(url);
+    //console.log(url);
     let req = request(url, callback);
     while (result === undefined) {
         require('deasync').runLoopOnce();
     }
-
+    console.log(result);
     return result;
 }
