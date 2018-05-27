@@ -36,8 +36,8 @@ app.post('/webhook', function (req, res) {
     console.log("response to DialogFlow");
     console.log(responseObject);
 
-    // return res.json({ 'fulfillmentText': weather }); //trying with
-    return res.json(responseObject);
+    return res.json({ 'fulfillmentText': weather }); //trying with this , and this is working
+    // return res.json(responseObject);
 
 })
 
