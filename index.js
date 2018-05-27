@@ -14,7 +14,7 @@ app.post('/webhook', function (req, res) {
 
     if(!req.body) res.sendStatus(400);
 
-    res.set('Content-Type', 'application/json');
+    // res.set('Content-Type', 'application/json');
     console.log("Post request from DialogFlow");
 //    console.log(req.body);
     console.log("Request Geo city is - ", req.body.queryResult.parameters['geo-city']);
@@ -36,7 +36,8 @@ app.post('/webhook', function (req, res) {
     console.log("response to DialogFlow");
     console.log(responseObject);
 
-    return res.json(responseObject);
+    return res.json({ 'fulfillmentText': weather }); //trying with
+    // return res.json(responseObject);
 
 })
 
