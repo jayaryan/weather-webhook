@@ -46,7 +46,7 @@ app.get('/weather/:city', function (req, res) {
 
     // if(!req.body) res.sendStatus(400);
     //
-    res.set('Content-Type', 'application/json');
+    // res.set('Content-Type', 'application/json');
     console.log("Get request from URL");
     console.log(req.params);
     console.log("Request Geo city is - ", req.params.city);
