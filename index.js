@@ -26,7 +26,7 @@ app.post('/webhook', function (req, res) {
     if(city)
         weather = getWeather(city);
 
-    let response = 'Got your request for ' + city;
+    let response = 'Sorry, do not understand your query';
     let responseObject = {
         "fulfillmentText": response,
         "fulfillmentMessage": [{"text": {"text": [weather]}}],
@@ -36,8 +36,8 @@ app.post('/webhook', function (req, res) {
     console.log("response to DialogFlow");
     console.log(responseObject);
 
-    return res.json({ 'fulfillmentText': weather }); //trying with
-    // return res.json(responseObject);
+    // return res.json({ 'fulfillmentText': weather }); //trying with
+    return res.json(responseObject);
 
 })
 
@@ -87,7 +87,7 @@ function callback(err, response, body) {
     if(weather.message === 'city not found')
         result = 'Unable to get Weather ' + weather.message;
     else
-        result = 'Right now its ' + weather.main.temp + ' degrees in ' + weather.weather[0].description;
+        result = 'Right now its ' + weather.main.temp + ' degrees in ' + weather.name+" with "+ weather.weather[0].description;
 
 }
 
