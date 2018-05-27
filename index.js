@@ -22,11 +22,11 @@ app.post('/webhook', function (req, res) {
     let city = req.body.queryResult.parameters['geo-city'];
 
     let weather = 'You are requesting for an invalid city';
-    
-    if(city)       
+
+    if(city)
         weather = getWeather(city);
 
-    let response = 'Got you request for '+city;
+    let response = 'Got your request for ' + city;
     let responseObject = {
         "fulfillmentText": response,
         "fulfillmentMessage": [{"text": {"text": [weather]}}],
@@ -53,9 +53,9 @@ app.get('/weather/:city', function (req, res) {
 
     let city = req.params.city;
 
-    let weather = 'You are requesting for an invalid City';	
+    let weather = 'You are requesting for an invalid City';
     if(city)
-       weather = getWeather(city);
+        weather = getWeather(city);
     let response = '';
     let responseObject = {
         "fulfillmentText": response,
@@ -72,7 +72,7 @@ app.get('/weather/:city', function (req, res) {
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.listen(3030, () => console.log('Example app listening on port 3000!'))
+app.listen(3030, () => console.log('Example app listening on port 3030!'))
 
 var result;
 var apiKey = 'f6dacb03346d39ed9172cd49941688a3';
